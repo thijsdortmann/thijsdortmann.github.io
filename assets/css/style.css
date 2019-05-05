@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: rgb(16,28,40);
+}
+
+#content {
+    background: rgb(255, 255, 255);
+}
+
+#content #header {
+    margin-bottom: 20px;
+}
+
+#content #profilePicture {
+    padding: 0 20px;
+}
+
+#content #profilePicture img {
+    width: 100%;
+}
