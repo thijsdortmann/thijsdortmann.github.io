@@ -1,0 +1,52 @@
+---
+import '../styles/site.css';
+
+const email = 'hello@thzd.nl';
+const description =
+  'Thijs Dortmann works at Nedap Retail, turning new ideas for retail into prototypes. Lives in Hengelo.';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thijs Dortmann</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://thijsdortmann.nl/" />
+    <meta property="og:title" content="Thijs Dortmann" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://thijsdortmann.nl/img/portrait.jpg" />
+    <meta name="theme-color" content="#dfdedb" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@900&family=Red+Hat+Text:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="card">
+      <div class="card__text">
+        <h1 class="card__name">Thijs<br />Dortmann</h1>
+        <p class="card__intro">
+          Hi there! I work at Nedap Retail, where I turn new ideas for retail into prototypes we can try out. I live in
+          Hengelo.
+        </p>
+        <ul class="card__links">
+          <li><a class="button" href={`mailto:${email}`}>Email me</a></li>
+          <li><a href="https://www.linkedin.com/in/thijsdortmann/">LinkedIn</a></li>
+          <li><a href="https://github.com/thijsdortmann/">GitHub</a></li>
+        </ul>
+      </div>
+      <figure class="card__photo">
+        <img
+          src="/img/portrait.jpg"
+          width="1800"
+          height="1447"
+          alt="Thijs Dortmann, smiling, leaning against a wall in a bright office hallway"
+        />
+      </figure>
+    </main>
+  </body>
+</html>

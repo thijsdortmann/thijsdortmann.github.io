@@ -1,0 +1,181 @@
+/* Stone and blueprint */
+:root {
+  --bg: #dfdedb;
+  --surface: #d3d2ce;
+  --ink: #26251e;
+  --muted: #5f5d55;
+  --accent: #2456d6;
+  --accent-hover: #1b45b4;
+  --accent-ink: #ffffff;
+
+  --font-display: 'Red Hat Display', system-ui, sans-serif;
+  --font-text: 'Red Hat Text', system-ui, sans-serif;
+
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+
+  --margin: clamp(16px, 3vw, 40px);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--step-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+figure,
+p,
+h1,
+ul {
+  margin: 0;
+}
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.07em;
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* The card: name and words on the left, the portrait filling the right. */
+.card {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.card__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  padding: var(--margin);
+  container-type: inline-size;
+}
+.card__name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  /* "Dortmann" measures about 5.8em: fit it to the column, never wider. */
+  font-size: min(calc(100cqi / 5.9), 9rem);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.card__intro {
+  font-size: var(--step-lead);
+  line-height: 1.4;
+  max-width: 30ch;
+}
+.card__links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  font-weight: 500;
+}
+.card__links a:not(.button) {
+  text-decoration-color: transparent;
+  transition: text-decoration-color 180ms var(--ease);
+}
+.card__links a:not(.button):hover {
+  text-decoration-color: currentColor;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 24px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-decoration: none;
+  transition: background-color 180ms var(--ease), transform 180ms var(--ease);
+}
+.button:hover {
+  background: var(--accent-hover);
+}
+.button:active {
+  transform: scale(0.97);
+}
+
+.card__photo {
+  position: relative;
+  margin: var(--margin) var(--margin) var(--margin) 0;
+  overflow: hidden;
+  background: var(--surface);
+}
+.card__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 28% 35%;
+}
+
+@media (max-width: 767px) {
+  .card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 48svh auto;
+  }
+  .card__photo {
+    grid-row: 1;
+    margin: var(--margin) var(--margin) 0;
+  }
+  .card__text {
+    justify-content: flex-start;
+    gap: 24px;
+    padding-top: 32px;
+    padding-bottom: 40px;
+  }
+}
+
+/* A quiet entrance; nothing waits on it. */
+@media (prefers-reduced-motion: no-preference) {
+  .card__text > * {
+    animation: rise 700ms var(--ease) both;
+  }
+  .card__text > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+  .card__text > :nth-child(3) {
+    animation-delay: 160ms;
+  }
+  .card__photo img {
+    animation: settle 1400ms var(--ease) both;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+}
